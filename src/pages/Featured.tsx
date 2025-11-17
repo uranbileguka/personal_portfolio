@@ -7,7 +7,7 @@ import { Github, ExternalLink } from "lucide-react";
 const featuredProjects = [
   {
     id: 1,
-    title: "E-Commerce Platform",
+    title: "Power bi dashboard",
     description: "A full-stack e-commerce solution with payment integration, inventory management, and admin dashboard.",
     technologies: ["React", "Node.js", "PostgreSQL", "Stripe"],
     githubUrl: "https://github.com",
@@ -16,7 +16,7 @@ const featuredProjects = [
   },
   {
     id: 2,
-    title: "Task Management App",
+    title: "Odoo erp system - Navixy gps",
     description: "Real-time collaborative task management tool with drag-and-drop functionality and team features.",
     technologies: ["React", "Firebase", "Tailwind CSS", "TypeScript"],
     githubUrl: "https://github.com",
@@ -25,7 +25,7 @@ const featuredProjects = [
   },
   {
     id: 3,
-    title: "Social Media Dashboard",
+    title: "Machine learning projects",
     description: "Analytics dashboard for social media metrics with data visualization and reporting capabilities.",
     technologies: ["React", "D3.js", "Express", "MongoDB"],
     githubUrl: "https://github.com",

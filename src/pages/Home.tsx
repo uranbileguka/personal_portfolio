@@ -78,7 +78,7 @@ const Home = () => {
                 {[
                   {
                     id: 1,
-                    title: "Slack Clone",
+                    title: "Power BI Dashboards",
                     gallery: [
                       { id: 1, description: "Dashboard View" },
                       { id: 2, description: "Channel Management" },
@@ -328,9 +328,10 @@ const Home = () => {
             {[
               {
                 id: 1,
-                title: "Slack Clone",
-                description: "'Slack Clone' is a robust full-stack application that mirrors Slack's functionalities. Users can create workspaces, establish both public and private channels, and invite members to these channels via email. Real-time chat and direct messaging capabilities empower seamless communication within teams. Built with modern web technologies, SlackClone ensures smooth performance and responsiveness across devices.",
-                technologies: ["Next.js", "Tailwindcss", "Node", "Nodemailer", "Socket.IO"],
+                title: "Power BI Dashboards",
+                description: 
+        "A collection of interactive Power BI dashboards built for a mining/ERP environment. These reports automate cost center tracking, payroll summaries, production KPIs, and cash flow views that previously took hours or days to prepare manually. Data is cleaned and modeled using Power Query and SQL, with DAX measures for dynamic time intelligence and variance analysis.",
+                technologies: ["Power BI", "Power Query", "SQL", "DAX"],
                 githubUrl: "https://github.com",
                 liveUrl: "https://example.com",
                 stars: 245,
@@ -345,9 +346,15 @@ const Home = () => {
               },
               {
                 id: 2,
-                title: "Task Management App",
-                description: "Real-time collaborative task management tool with drag-and-drop functionality and team features. Built to handle complex workflows and enhance team productivity with intuitive interface.",
-                technologies: ["React", "Firebase", "Tailwind CSS", "TypeScript"],
+                title: "Odoo ERP × Navixy GPS Integration",
+                description: 
+        "End-to-end data pipeline that connects Navixy GPS tracking data with Odoo ERP to monitor fleet utilization, fuel consumption, and route efficiency. The system fetches GPS data via Navixy API, processes it with Python and Pandas, and stores it in PostgreSQL/Odoo models for reporting. This integration enables near real-time visibility into vehicle activity and supports cost analysis for mining operations.",
+                technologies: [
+                     "Python",
+        "Odoo 18",
+        "PostgreSQL",
+        "Navixy API",
+      ],
                 githubUrl: "https://github.com",
                 liveUrl: "https://example.com",
                 stars: 189,
@@ -360,9 +367,11 @@ const Home = () => {
               },
               {
                 id: 3,
-                title: "Social Media Dashboard",
-                description: "Analytics dashboard for social media metrics with data visualization and reporting capabilities. Track engagement, growth, and performance across multiple platforms in real-time.",
-                technologies: ["React", "D3.js", "Express", "MongoDB"],
+                title: 
+                "Machine learning",
+                description: 
+        "A set of machine learning experiments focused on customer segmentation, anomaly detection, and classification. Using real-world datasets, models include K-Means and hierarchical clustering, isolation-based outlier detection (Isolation Forest, LOF), and classifiers such as Logistic Regression and SVM. Dimensionality reduction with PCA and t-SNE is used for visualization and insight communication.",
+      technologies: ["Python", "Pandas", "scikit-learn", "NumPy", "Matplotlib", "Seaborn"],
                 githubUrl: "https://github.com",
                 liveUrl: "https://example.com",
                 stars: 167,
