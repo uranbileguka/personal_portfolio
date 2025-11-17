@@ -163,11 +163,11 @@ const Home = () => {
             <div className="space-y-6 sm:space-y-8 animate-fade-in-left">
               <div className="inline-block">
                 <span className="px-3 sm:px-4 py-2 bg-primary/20 text-primary border border-primary/30 rounded text-xs sm:text-sm font-mono">
-                  Data Analyst & ERP Specialist
+                  Software developer & Data Analyst & ERP Specialist
                 </span>
               </div>
               
-              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-tight tracking-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-bold leading-tight tracking-tight">
                 Hi, I'm
                 <br />
                 Uranbileg Enkhjargal
@@ -196,12 +196,12 @@ const Home = () => {
                     YEARS<br />EXPERIENCE
                   </div>
                 </div>
-                <div>
+                {/* <div>
                   <div className="text-4xl sm:text-5xl font-bold mb-1">20</div>
                   <div className="text-sm text-muted-foreground uppercase tracking-wider">
                     PROJECTS<br />COMPLETED
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div className="flex gap-6 pt-4">
@@ -214,7 +214,7 @@ const Home = () => {
                   <Twitter size={24} />
                 </a>
                 <a 
-                  href="https://github.com" 
+                  href="https://github.com/uranbileguka" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-primary transition-colors"
@@ -222,7 +222,7 @@ const Home = () => {
                   <Github size={24} />
                 </a>
                 <a 
-                  href="https://linkedin.com" 
+                  href="https://www.linkedin.com/in/uranbileg/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-primary transition-colors"
@@ -257,11 +257,17 @@ const Home = () => {
                 </div>
                 
                 {/* Image placeholder */}
-                <div className="relative rounded-2xl overflow-hidden bg-card/50 border border-border h-full flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <p className="text-muted-foreground">Your Photo Here</p>
-                    <p className="text-sm text-muted-foreground mt-2">Replace this with your image</p>
-                  </div>
+                <div className="relative rounded-2xl overflow-hidden bg-card/50 border border-border h-full">
+                  <img 
+                    src="/profile.jpg" 
+                    alt="Uranbileg Enkhjargal" 
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      // Fallback if image doesn't exist
+                      e.currentTarget.style.display = 'none';
+                      e.currentTarget.parentElement!.innerHTML = '<div class="flex items-center justify-center h-full"><div class="text-center p-8"><p class="text-muted-foreground">Your Photo Here</p><p class="text-sm text-muted-foreground mt-2">Add profile.jpg to public folder</p></div></div>';
+                    }}
+                  />
                 </div>
               </div>
             </div>
@@ -762,7 +768,7 @@ const Home = () => {
                         <Input
                           id="email"
                           type="email"
-                          placeholder="your.email@example.com"
+                          placeholder="uenkhjargal@clark.edu"
                           required
                           className="bg-background border-border"
                         />
@@ -809,10 +815,10 @@ const Home = () => {
                     <div>
                       <p className="text-sm font-medium">Email</p>
                       <a
-                        href="mailto:your.email@example.com"
+                        href="mailto:uenkhjargal@clark.edu"
                         className="text-sm text-muted-foreground hover:text-primary"
                       >
-                        your.email@example.com
+                        uenkhjargal@clark.edu
                       </a>
                     </div>
                   </div>
@@ -825,7 +831,7 @@ const Home = () => {
                         href="tel:+1234567890"
                         className="text-sm text-muted-foreground hover:text-primary"
                       >
-                        +1 (234) 567-890
+                        +1 (774) 351-8585
                       </a>
                     </div>
                   </div>
@@ -835,7 +841,7 @@ const Home = () => {
                     <div>
                       <p className="text-sm font-medium">Location</p>
                       <p className="text-sm text-muted-foreground">
-                        Your City, Country
+                        Worcester, USA
                       </p>
                     </div>
                   </div>

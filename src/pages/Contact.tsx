@@ -6,11 +6,35 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Mail, MapPin, Phone, Download, Github, Linkedin, Twitter } from "lucide-react";
 import { toast } from "sonner";
+import emailjs from '@emailjs/browser';
+import { useState } from 'react';
 
 const Contact = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast.success("Message sent! I'll get back to you soon.");
+    setIsSubmitting(true);
+
+    try {
+      // Replace these with your EmailJS credentials
+      const result = await emailjs.sendForm(
+        'YOUR_SERVICE_ID',      // Replace with your EmailJS service ID
+        'YOUR_TEMPLATE_ID',     // Replace with your EmailJS template ID
+        e.currentTarget,
+        'YOUR_PUBLIC_KEY'       // Replace with your EmailJS public key
+      );
+
+      if (result.text === 'OK') {
+        toast.success("Message sent! I'll get back to you soon.");
+        e.currentTarget.reset();
+      }
+    } catch (error) {
+      console.error('Email send error:', error);
+      toast.error("Failed to send message. Please try again or email me directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -41,6 +65,7 @@ const Contact = () => {
                         <Label htmlFor="name">Name</Label>
                         <Input
                           id="name"
+                          name="from_name"
                           placeholder="Your name"
                           required
                           className="bg-background border-border"
@@ -50,6 +75,7 @@ const Contact = () => {
                         <Label htmlFor="email">Email</Label>
                         <Input
                           id="email"
+                          name="from_email"
                           type="email"
                           placeholder="your.email@example.com"
                           required
@@ -62,6 +88,7 @@ const Contact = () => {
                       <Label htmlFor="subject">Subject</Label>
                       <Input
                         id="subject"
+                        name="subject"
                         placeholder="What's this about?"
                         required
                         className="bg-background border-border"
@@ -72,6 +99,7 @@ const Contact = () => {
                       <Label htmlFor="message">Message</Label>
                       <Textarea
                         id="message"
+                        name="message"
                         placeholder="Your message..."
                         rows={6}
                         required
@@ -79,8 +107,8 @@ const Contact = () => {
                       />
                     </div>
                     
-                    <Button type="submit" size="lg" className="w-full">
-                      Send Message
+                    <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                      {isSubmitting ? "Sending..." : "Send Message"}
                     </Button>
                   </form>
                 </CardContent>
