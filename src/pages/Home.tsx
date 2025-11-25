@@ -91,7 +91,7 @@ const Home = () => {
                   },
                   {
                     id: 2,
-                    title: "Task Management App",
+                    title: "Odoo18 × Navixy GPS Integration",
                     gallery: [
                       { id: 1, description: "Task Board" },
                       { id: 2, description: "Calendar View" },
@@ -116,38 +116,57 @@ const Home = () => {
                   {
                     id: 1,
                     gallery: [
-                      { id: 1, description: "Dashboard View" },
-                      { id: 2, description: "Channel Management" },
-                      { id: 3, description: "Real-time Chat Interface" },
-                      { id: 4, description: "User Settings" },
-                      { id: 5, description: "Workspace Overview" }
+                      { id: 1, title: "Dashboard Overview", description: "Main dashboard with key metrics and KPIs" },
+                      { id: 2, title: "Channel Management", description: "Manage communication channels and workflows" },
+                      { id: 3, title: "Real-time Chat", description: "Live chat interface for team collaboration" },
+                      { id: 4, title: "User Settings", description: "Customize user preferences and permissions" },
+                      { id: 5, title: "Workspace Overview", description: "Complete workspace management interface" }
                     ]
                   },
                   {
                     id: 2,
                     gallery: [
-                      { id: 1, description: "Task Board" },
-                      { id: 2, description: "Calendar View" },
-                      { id: 3, description: "Team Collaboration" }
+                      { id: 1, title: "Odoo 18 dashboard", description: "Main ERP dashboard with integrated GPS data", image: "/odoo-0.png" },
+                      { id: 2, title: "Dump Haul Cycles Count", description: "Real-time vehicle tracking and monitoring", image: "/odoo-1.png" },
+                      { id: 3, title: "Dump work-stop ratio", description: "GPS route visualization and efficiency metrics", image: "/odoo-2.png" },
+                      { id: 4, title: "Dump fuel Consumption", description: "Detailed fuel usage tracking and analysis", image: "/odoo-3.png" },
+                      { id: 5, title: "Plan and performance", description: "Geofencing and zone-based monitoring", image: "/odoo-4.png" },
+                      { id: 6, title: "Sales orders", description: "Vehicle operation hours and activity tracking", image: "/odoo-5.png" }
                     ]
                   },
                   {
                     id: 3,
                     gallery: [
-                      { id: 1, description: "Analytics Overview" },
-                      { id: 2, description: "Engagement Metrics" },
-                      { id: 3, description: "Growth Charts" },
-                      { id: 4, description: "Platform Comparison" }
+                      { id: 1, title: "Analytics Dashboard", description: "Comprehensive analytics and insights overview" },
+                      { id: 2, title: "Engagement Metrics", description: "User engagement tracking and analysis" },
+                      { id: 3, title: "Growth Charts", description: "Visual representation of growth trends" },
+                      { id: 4, title: "Platform Comparison", description: "Cross-platform performance comparison" }
                     ]
                   }
                 ].find(p => p.id === selectedProject)?.gallery.map((img) => (
                   <div key={img.id} className="w-full">
-                    <div className="aspect-video rounded-lg bg-muted flex items-center justify-center border border-border hover:border-primary/30 transition-colors">
-                      <div className="text-center">
-                        <Images size={48} className="mx-auto mb-2 text-muted-foreground" />
-                        <p className="text-sm text-muted-foreground">{img.description}</p>
-                        <p className="text-xs text-muted-foreground/60 mt-1">Add your image here</p>
-                      </div>
+                    <h4 className="text-xl font-semibold mb-3 text-primary">{img.title}</h4>
+                    <div className="aspect-video rounded-lg bg-muted flex items-center justify-center border border-border hover:border-primary/30 transition-colors overflow-hidden">
+                      {img.image ? (
+                        <img
+                          src={img.image}
+                          alt={img.title}
+                          className="w-full h-full object-contain"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                            const fallback = document.createElement('div');
+                            fallback.className = 'text-center px-4';
+                            fallback.innerHTML = `<div class="text-center px-4"><svg class="mx-auto mb-2 text-muted-foreground" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg><p class="text-sm text-muted-foreground">${img.description}</p><p class="text-xs text-muted-foreground/60 mt-1">Image not found</p></div>`;
+                            e.currentTarget.parentElement?.appendChild(fallback);
+                          }}
+                        />
+                      ) : (
+                        <div className="text-center px-4">
+                          <Images size={48} className="mx-auto mb-2 text-muted-foreground" />
+                          <p className="text-sm text-muted-foreground">{img.description}</p>
+                          <p className="text-xs text-muted-foreground/60 mt-1">Add your image here</p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -166,9 +185,9 @@ const Home = () => {
                 <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto">
                   <span className="text-4xl">🔑</span>
                 </div>
-                
+
                 <h3 className="text-2xl font-bold">Demo Login Credentials</h3>
-                
+
                 <div className="space-y-4 bg-muted/50 rounded-lg p-6 border border-border">
                   <div className="space-y-2">
                     <p className="text-sm text-muted-foreground font-medium">Email:</p>
@@ -392,18 +411,18 @@ const Home = () => {
                 stars: 245,
                 image: "🛍️",
                 gallery: [
-                  { id: 1, description: "Dashboard View" },
-                  { id: 2, description: "Channel Management" },
-                  { id: 3, description: "Real-time Chat Interface" },
-                  { id: 4, description: "User Settings" },
-                  { id: 5, description: "Workspace Overview" }
+                  { id: 1, title: "Dashboard Overview", description: "Main dashboard with key metrics and KPIs" },
+                  { id: 2, title: "Channel Management", description: "Manage communication channels and workflows" },
+                  { id: 3, title: "Real-time Chat", description: "Live chat interface for team collaboration" },
+                  { id: 4, title: "User Settings", description: "Customize user preferences and permissions" },
+                  { id: 5, title: "Workspace Overview", description: "Complete workspace management interface" }
                 ]
               },
               {
                 id: 2,
                 title: "Odoo ERP × Navixy GPS Integration",
                 description:
-                  "End-to-end data pipeline that connects Navixy GPS tracking data with Odoo ERP to monitor fleet utilization, fuel consumption, and route efficiency. The system fetches GPS data via Navixy API, processes it with Python and Pandas, and stores it in PostgreSQL/Odoo models for reporting. This integration enables near real-time visibility into vehicle activity and supports cost analysis for mining operations.",
+                  "A customized Odoo 18 ERP Community Edition system that pulls Navixy GPS data from the API, processes zone, fuel, and activity reports, and converts them into daily operational data. It calculates key mining metrics such as cycle haul counts, work stop ratios, fuel usage, and equipment utilization, and stores everything in Odoo/PostgreSQL for reporting. You can also view the demo sales data and explore core Odoo 18 Community functionalities from this environment.",
                 technologies: [
                   "Python",
                   "Odoo 18",
@@ -413,11 +432,14 @@ const Home = () => {
                 githubUrl: "https://github.com/uranbileguka/odoo18-erp-custom",
                 liveUrl: "https://erp.uranbileg.dev/odoo",
                 stars: 189,
-                image: "📋",
+                image: "/odoo18.jpg",
                 gallery: [
-                  { id: 1, description: "Task Board" },
-                  { id: 2, description: "Calendar View" },
-                  { id: 3, description: "Team Collaboration" }
+                  { id: 1, title: "Dump Haul Cycles Count", description: "Main ERP dashboard with integrated GPS data", image: "/odoo-0.png" },
+                  { id: 2, title: "Fleet Management", description: "Real-time vehicle tracking and monitoring", image: "/odoo-1.png" },
+                  { id: 3, title: "Route Analysis", description: "GPS route visualization and efficiency metrics", image: "/odoo-2.png" },
+                  { id: 4, title: "Fuel Consumption Report", description: "Detailed fuel usage tracking and analysis", image: "/odoo-3.png" },
+                  { id: 5, title: "GPS Zone Tracking", description: "Geofencing and zone-based monitoring", image: "/odoo-4.png" },
+                  { id: 6, title: "Motion Hour Report", description: "Vehicle operation hours and activity tracking", image: "/odoo-5.png" }
                 ],
                 showLoginInfo: true
               },
@@ -433,10 +455,10 @@ const Home = () => {
                 stars: 167,
                 image: "📊",
                 gallery: [
-                  { id: 1, description: "Analytics Overview" },
-                  { id: 2, description: "Engagement Metrics" },
-                  { id: 3, description: "Growth Charts" },
-                  { id: 4, description: "Platform Comparison" }
+                  { id: 1, title: "Analytics Dashboard", description: "Comprehensive analytics and insights overview" },
+                  { id: 2, title: "Engagement Metrics", description: "User engagement tracking and analysis" },
+                  { id: 3, title: "Growth Charts", description: "Visual representation of growth trends" },
+                  { id: 4, title: "Platform Comparison", description: "Cross-platform performance comparison" }
                 ]
               }
             ].map((project, index) => (
@@ -446,11 +468,23 @@ const Home = () => {
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 {/* Left side - Project Preview */}
-                <div className="relative rounded-xl overflow-hidden bg-card border border-border p-6 sm:p-8 hover:border-primary/30 transition-all">
-                  <div className="text-center">
-                    <div className="text-6xl sm:text-7xl lg:text-8xl mb-4">{project.image}</div>
-                    <p className="text-xs sm:text-sm text-muted-foreground">Project Preview</p>
-                  </div>
+                <div className="relative rounded-xl overflow-hidden bg-card border border-border hover:border-primary/30 transition-all">
+                  {project.image.startsWith('/') ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-contain aspect-video bg-muted/30"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.parentElement!.innerHTML = '<div class="flex items-center justify-center p-6 sm:p-8"><div class="text-center"><p class="text-6xl sm:text-7xl lg:text-8xl mb-4">📋</p><p class="text-xs sm:text-sm text-muted-foreground">Project Preview</p></div></div>';
+                      }}
+                    />
+                  ) : (
+                    <div className="text-center p-6 sm:p-8">
+                      <div className="text-6xl sm:text-7xl lg:text-8xl mb-4">{project.image}</div>
+                      <p className="text-xs sm:text-sm text-muted-foreground">Project Preview</p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Right side - Project Details */}
@@ -507,7 +541,7 @@ const Home = () => {
                       Gallery
                     </Button>
                     {project.showLoginInfo ? (
-                      <Button 
+                      <Button
                         onClick={() => {
                           setDemoUrl(project.liveUrl);
                           setLoginModalOpen(true);
