@@ -137,10 +137,10 @@ const Home = () => {
                   {
                     id: 3,
                     gallery: [
-                      { id: 1, title: "Analytics Dashboard", description: "Comprehensive analytics and insights overview" },
-                      { id: 2, title: "Engagement Metrics", description: "User engagement tracking and analysis" },
-                      { id: 3, title: "Growth Charts", description: "Visual representation of growth trends" },
-                      { id: 4, title: "Platform Comparison", description: "Cross-platform performance comparison" }
+                      { id: 1, title: "Kannada MNIST - Before Reduction", description: "Original high-dimensional dataset visualization showing complexity", image: "/ML_bef_digit.png" },
+                      { id: 2, title: "Kannada MNIST - After Dimensionality Reduction", description: "PCA and t-SNE applied for clear cluster visualization", image: "/ML_after_digits.png" },
+                      { id: 3, title: "Regression Analysis", description: "Linear and polynomial regression model comparison", image: "/ML_regression.png" },
+                      { id: 4, title: "Wine Quality Clustering", description: "K-Means clustering analysis on wine dataset", image: "/ML_wine_cluster.png" }
                     ]
                   }
                 ].find(p => p.id === selectedProject)?.gallery.map((img) => (
@@ -401,24 +401,6 @@ const Home = () => {
           <div className="space-y-12">
             {[
               {
-                id: 1,
-                title: "Power BI Dashboards",
-                description:
-                  "A collection of interactive Power BI dashboards built for a mining/ERP environment. These reports automate cost center tracking, payroll summaries, production KPIs, and cash flow views that previously took hours or days to prepare manually. Data is cleaned and modeled using Power Query and SQL, with DAX measures for dynamic time intelligence and variance analysis.",
-                technologies: ["Power BI", "Power Query", "SQL", "DAX"],
-                githubUrl: "https://github.com",
-                liveUrl: "https://example.com",
-                stars: 245,
-                image: "🛍️",
-                gallery: [
-                  { id: 1, title: "Dashboard Overview", description: "Main dashboard with key metrics and KPIs" },
-                  { id: 2, title: "Channel Management", description: "Manage communication channels and workflows" },
-                  { id: 3, title: "Real-time Chat", description: "Live chat interface for team collaboration" },
-                  { id: 4, title: "User Settings", description: "Customize user preferences and permissions" },
-                  { id: 5, title: "Workspace Overview", description: "Complete workspace management interface" }
-                ]
-              },
-              {
                 id: 2,
                 title: "Odoo ERP × Navixy GPS Integration",
                 description:
@@ -450,17 +432,35 @@ const Home = () => {
                 description:
                   "A set of machine learning experiments focused on customer segmentation, anomaly detection, and classification. Using real-world datasets, models include K-Means and hierarchical clustering, isolation-based outlier detection (Isolation Forest, LOF), and classifiers such as Logistic Regression and SVM. Dimensionality reduction with PCA and t-SNE is used for visualization and insight communication.",
                 technologies: ["Python", "Pandas", "scikit-learn", "NumPy", "Matplotlib", "Seaborn"],
+                githubUrl: "https://github.com/uranbileguka/machine_learning",
+                liveUrl: "https://github.com/uranbileguka/machine_learning/blob/main/README.md",
+                stars: 167,
+                image: "/ml.jpg",
+                gallery: [
+                  { id: 1, title: "Kannada MNIST - Before Reduction", description: "Original high-dimensional dataset visualization showing complexity", image: "/ML_bef_digit.png" },
+                  { id: 2, title: "Kannada MNIST - After Dimensionality Reduction", description: "PCA and t-SNE applied for clear cluster visualization", image: "/ML_after_digits.png" },
+                  { id: 3, title: "Regression Analysis", description: "Linear and polynomial regression model comparison", image: "/ML_regression.png" },
+                  { id: 4, title: "Wine Quality Clustering", description: "K-Means clustering analysis on wine dataset", image: "/ML_wine_cluster.png" }
+                ]
+              },
+              {
+                id: 1,
+                title: "Power BI Dashboards",
+                description:
+                  "A collection of interactive Power BI dashboards built for a mining/ERP environment. These reports automate cost center tracking, payroll summaries, production KPIs, and cash flow views that previously took hours or days to prepare manually. Data is cleaned and modeled using Power Query and SQL, with DAX measures for dynamic time intelligence and variance analysis.",
+                technologies: ["Power BI", "Power Query", "SQL", "DAX"],
                 githubUrl: "https://github.com",
                 liveUrl: "https://example.com",
-                stars: 167,
-                image: "📊",
+                stars: 245,
+                image: "🛍️",
                 gallery: [
-                  { id: 1, title: "Analytics Dashboard", description: "Comprehensive analytics and insights overview" },
-                  { id: 2, title: "Engagement Metrics", description: "User engagement tracking and analysis" },
-                  { id: 3, title: "Growth Charts", description: "Visual representation of growth trends" },
-                  { id: 4, title: "Platform Comparison", description: "Cross-platform performance comparison" }
+                  { id: 1, title: "Dashboard Overview", description: "Main dashboard with key metrics and KPIs" },
+                  { id: 2, title: "Channel Management", description: "Manage communication channels and workflows" },
+                  { id: 3, title: "Real-time Chat", description: "Live chat interface for team collaboration" },
+                  { id: 4, title: "User Settings", description: "Customize user preferences and permissions" },
+                  { id: 5, title: "Workspace Overview", description: "Complete workspace management interface" }
                 ]
-              }
+              },
             ].map((project, index) => (
               <div
                 key={project.id}
