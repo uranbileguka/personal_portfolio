@@ -1,0 +1,100 @@
+version: "3.9"
+
+services:
+  # ===================== REACT APP =====================
+  react:
+    build:
+      context: ./reactapp
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    labels:
+      - "traefik.enable=true"
+
+      # HTTPS router
+      - "traefik.http.routers.react.rule=Host(`uranbileg.dev`) || Host(`www.uranbileg.dev`)"
+      - "traefik.http.routers.react.entrypoints=websecure"
+      - "traefik.http.routers.react.tls.certresolver=le"
+      - "traefik.http.services.react.loadbalancer.server.port=80"
+
+      # HTTP router -> redirect to HTTPS (Traefik side will honor this)
+      - "traefik.http.routers.react-http.rule=Host(`uranbileg.dev`) || Host(`www.uranbileg.dev`)"
+      - "traefik.http.routers.react-http.entrypoints=web"
+      - "traefik.http.routers.react-http.middlewares=redirect-to-https@docker"
+
+      # define the redirect middleware (lives in @docker)
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+    networks: [proxy]
+    restart: unless-stopped
+
+  # ===================== POSTGRES (DB for Odoo) =====================
+  db:
+    image: postgres:16
+    container_name: odoo-db
+    environment:
+      POSTGRES_DB: odoo
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL","pg_isready -U odoo -d odoo"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [proxy]
+    restart: unless-stopped
+
+  # ===================== ODOO 18 =====================
+  odoo:
+    image: odoo:18
+    container_name: odoo18
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      HOST: db
+      USER: odoo
+      PASSWORD: admin
+      ADMIN_PASSWORD: admin
+      HOME: /var/lib/odoo
+      XDG_DATA_HOME: /var/lib/odoo/.local/share
+      XDG_CACHE_HOME: /var/lib/odoo/.local/cache
+      XDG_CONFIG_HOME: /var/lib/odoo/.config  
+    volumes:
+      - /home/ubuntu/apps/odoo18/config/odoo.conf:/etc/odoo/odoo.conf:ro
+      - /home/ubuntu/apps/odoo18/addons:/mnt/extra-addons
+      - odoo_data:/var/lib/odoo 
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy" 
+      # Odoo main app (HTTPS)
+    # Service (unique name)
+      - "traefik.http.services.odoo-svc.loadbalancer.server.port=8069"
+      - "traefik.http.services.odoo-svc.loadbalancer.server.scheme=http"
+
+    # HTTPS router (unique name)
+      - "traefik.http.routers.odoo-secure.rule=Host(`erp.uranbileg.dev`)"
+      - "traefik.http.routers.odoo-secure.entrypoints=websecure"
+      - "traefik.http.routers.odoo-secure.tls=true"
+      - "traefik.http.routers.odoo-secure.tls.certresolver=le"
+      - "traefik.http.routers.odoo-secure.service=odoo-svc"
+
+    # HTTP → HTTPS (optional)
+      - "traefik.http.routers.odoo-http.rule=Host(`erp.uranbileg.dev`)"
+      - "traefik.http.routers.odoo-http.entrypoints=web"
+      - "traefik.http.routers.odoo-http.middlewares=redirect-to-https@docker"
+
+    networks: [proxy]
+    restart: unless-stopped
+
+volumes:
+  db_data:
+  odoo_data:
+
+networks:
+  proxy:
+    external: true
+
