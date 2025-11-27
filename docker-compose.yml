@@ -90,9 +90,61 @@ services:
     networks: [proxy]
     restart: unless-stopped
 
+  # ===================== GPS BACKEND (Django) =====================
+  gps_backend:
+    build:
+      context: ./se_gps/backend_gps
+      dockerfile: Dockerfile
+    container_name: gps_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DEBUG=False
+      - ALLOWED_HOSTS=fleet.uranbileg.dev,localhost,127.0.0.1,gps_backend
+    volumes:
+      - gps_static:/app/staticfiles
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             python manage.py runserver 0.0.0.0:8000"
+    networks: [proxy]
+    restart: unless-stopped
+
+  # ===================== GPS FRONTEND (React) =====================
+  gps_frontend:
+    build:
+      context: ./se_gps/frontend_gps
+      dockerfile: Dockerfile
+    container_name: gps_frontend
+    depends_on:
+      - gps_backend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      
+      # Service
+      - "traefik.http.services.gps-svc.loadbalancer.server.port=80"
+      
+      # HTTPS router
+      - "traefik.http.routers.gps-secure.rule=Host(`fleet.uranbileg.dev`)"
+      - "traefik.http.routers.gps-secure.entrypoints=websecure"
+      - "traefik.http.routers.gps-secure.tls=true"
+      - "traefik.http.routers.gps-secure.tls.certresolver=le"
+      - "traefik.http.routers.gps-secure.service=gps-svc"
+      
+      # HTTP → HTTPS
+      - "traefik.http.routers.gps-http.rule=Host(`fleet.uranbileg.dev`)"
+      - "traefik.http.routers.gps-http.entrypoints=web"
+      - "traefik.http.routers.gps-http.middlewares=redirect-to-https@docker"
+      
+    networks: [proxy]
+    restart: unless-stopped
+
 volumes:
   db_data:
   odoo_data:
+  gps_static:
 
 networks:
   proxy:
