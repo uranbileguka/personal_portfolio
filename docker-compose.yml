@@ -116,8 +116,6 @@ services:
     build:
       context: /home/ubuntu/apps/se_gps/frontend_gps
       dockerfile: Dockerfile
-      cache_from:
-        - gps_frontend:latest
     container_name: gps_frontend
     depends_on:
       - gps_backend
