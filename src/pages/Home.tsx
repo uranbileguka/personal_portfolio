@@ -107,6 +107,16 @@ const Home = () => {
                       { id: 3, description: "Growth Charts" },
                       { id: 4, description: "Platform Comparison" }
                     ]
+                  },
+                  {
+                    id: 4,
+                    title: "Django Backend + React.js Fleet Management",
+                    gallery: [
+                      { id: 1, description: "Fleet Dashboard" },
+                      { id: 2, description: "Zone Report" },
+                      { id: 3, description: "Fuel Report" },
+                      { id: 4, description: "Fleet Record" }
+                    ]
                   }
                 ].find(p => p.id === selectedProject)?.title} - Gallery
               </h3>
@@ -141,6 +151,15 @@ const Home = () => {
                       { id: 2, title: "Kannada MNIST - After Dimensionality Reduction", description: "PCA and t-SNE applied for clear cluster visualization", image: "/ML_after_digits.png" },
                       { id: 3, title: "Regression Analysis", description: "Linear and polynomial regression model comparison", image: "/ML_regression.png" },
                       { id: 4, title: "Wine Quality Clustering", description: "K-Means clustering analysis on wine dataset", image: "/ML_wine_cluster.png" }
+                    ]
+                  },
+                  {
+                    id: 4,
+                    gallery: [
+                      { id: 1, title: "Fleet Login", description: "Real-time vehicle tracking and status overview", image: "/fleet-1.jpeg" },
+                      { id: 2, title: "Zone Report", description: "Detailed fuel consumption analysis and trends", image: "/fleet-2.png" },
+                      { id: 3, title: "Fuel Report", description: "Geofencing and zone-based activity monitoring", image: "/fleet-3.png" },
+                      { id: 4, title: "Fleet Record", description: "Complete trip logs with route visualization", image: "/fleet-4.png" }
                     ]
                   }
                 ].find(p => p.id === selectedProject)?.gallery.map((img) => (
@@ -182,7 +201,7 @@ const Home = () => {
           <div className="relative w-full max-w-md">
             <div className="bg-card border-2 border-primary/30 rounded-xl p-8 shadow-2xl">
               <div className="text-center space-y-6">
-                <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto">
+                  <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto">
                   <span className="text-4xl">🔑</span>
                 </div>
 
@@ -191,17 +210,23 @@ const Home = () => {
                 <div className="space-y-4 bg-muted/50 rounded-lg p-6 border border-border">
                   <div className="space-y-2">
                     <p className="text-sm text-muted-foreground font-medium">Email:</p>
-                    <p className="text-lg font-bold text-primary">test</p>
-                  </div>
+                    <p className="text-lg font-bold text-primary font-mono">
+                      {demoUrl.includes('fleet.uranbileg.dev') ? 'test@test.com' : 'test'}
+                    </p>
+                      </div>
                   <div className="h-px bg-border"></div>
                   <div className="space-y-2">
                     <p className="text-sm text-muted-foreground font-medium">Password:</p>
-                    <p className="text-lg font-bold text-primary">test</p>
+                    <p className="text-lg font-bold text-primary font-mono">
+                      {demoUrl.includes('fleet.uranbileg.dev') ? 'testpass123' : 'test'}
+                    </p>
+                    </div>
                   </div>
-                </div>
 
                 <p className="text-sm text-muted-foreground">
-                  Use these credentials to access the Odoo ERP × Navixy GPS Integration demo
+                  {demoUrl.includes('fleet.uranbileg.dev') 
+                    ? 'Use these credentials to access the Fleet Management System demo'
+                    : 'Use these credentials to access the Odoo ERP × Navixy GPS Integration demo'}
                 </p>
 
                 <div className="flex gap-3 pt-4">
@@ -212,17 +237,17 @@ const Home = () => {
                   >
                     Cancel
                   </Button>
-                  <Button
-                    onClick={() => {
-                      window.open(demoUrl, '_blank');
-                      setLoginModalOpen(false);
-                    }}
+                    <Button
+                      onClick={() => {
+                        window.open(demoUrl, '_blank');
+                        setLoginModalOpen(false);
+                      }}
                     className="flex-1 bg-primary hover:bg-primary/90"
-                  >
+                    >
                     <ExternalLink size={16} className="mr-2" />
                     Go to Demo
-                  </Button>
-                </div>
+                    </Button>
+                  </div>
               </div>
             </div>
           </div>
@@ -422,6 +447,32 @@ const Home = () => {
                   { id: 4, title: "Fuel Consumption Report", description: "Detailed fuel usage tracking and analysis", image: "/odoo-3.png" },
                   { id: 5, title: "GPS Zone Tracking", description: "Geofencing and zone-based monitoring", image: "/odoo-4.png" },
                   { id: 6, title: "Motion Hour Report", description: "Vehicle operation hours and activity tracking", image: "/odoo-5.png" }
+                ],
+                showLoginInfo: true
+              },
+              {
+                id: 4,
+                title: "Full-Stack Fleet Management App (Django + React)",
+                description:
+                  "Developed a full-scale web application with Django REST API backend and React.js frontend for comprehensive fleet management and real-time GPS tracking. The Django backend handles authentication, data processing, and API endpoints for GPS data integration with Navixy API. Frontend features interactive dashboards for vehicle monitoring, fuel consumption analysis, trip history, and zone-based reporting. Complete with JWT authentication, Docker containerization, and nginx reverse proxy for production deployment. The system computes operational metrics, manages user sessions, and provides RESTful endpoints for all fleet operations.",
+                technologies: [
+                  "Django",
+                  "React.js",
+                  "REST API",
+                  "Material-UI",
+                  "Recharts",
+                  "Docker",
+                  "nginx",
+                ],
+                githubUrl: "https://github.com/uranbileguka/se_gps",
+                liveUrl: "https://fleet.uranbileg.dev/login",
+                stars: 42,
+                image: "/fleet-1.jpeg",
+                gallery: [
+                  { id: 1, title: "Fleet login", description: "Real-time vehicle tracking and status overview", image: "/fleet-1.jpeg" },
+                  { id: 2, title: "Zone Report", description: "Detailed fuel consumption analysis and trends", image: "/fleet-2.png" },
+                  { id: 3, title: "Fuel Report", description: "Geofencing and zone-based activity monitoring", image: "/fleet-3.png" },
+                  { id: 4, title: "Fleet record", description: "Complete trip logs with route visualization", image: "/fleet-4.png" },
                 ],
                 showLoginInfo: true
               },
